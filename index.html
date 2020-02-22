@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <title>htm Demo</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"/>
+    <meta
+      name="viewport"
+      content="width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <title>combiname</title>
+    <link rel="stylesheet" href="indexTest.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="128x128"
+      href=".png"/>
+  </head>
+  <body>
   <script type="module">
     import { html, Component, render } from 'https://ghtea.github.io/combiname/common/standalone.module.js';
 
@@ -9,10 +25,10 @@
         const { todos = [] } = this.state;
         this.setState({ todos: todos.concat(`Item ${todos.length}`) });
       }
-      render({ page }, { todos = [] }) {
+      render({ version }, { todos = [] }) {
         return html`
           <div class="app">
-            <${Header} name="ToDo's (${page})" />
+            <${Header} name="combiname v(${version})" />
             <ul>
               ${todos.map(todo => html`
                 <li>${todo}</li>
@@ -25,10 +41,11 @@
       }
     }
 
-    const Header = ({ name }) => html`<h1>${name} List</h1>`
+    const Header = ({ name }) => html`<h1>${name}</h1>`
 
     const Footer = props => html`<footer ...${props} />`
 
-    render(html`<${App} page="All" />`, document.body);
+    render(html`<${App} version="0.1" />`, document.body);
   </script>
+  </body>
 </html>
