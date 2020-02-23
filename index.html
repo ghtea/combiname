@@ -15,31 +15,30 @@
       rel="apple-touch-icon"
       sizes="128x128"
       href=".png"/>
-  </head>
-  <body>
-  
+
   <script src="dataWords.js"></script>
   <script type="module">
     import { html, Component, render } from 'https://ghtea.github.io/combiname/common/standalone.module.js';
 
     class App extends Component {
       makeName() {
-        let randomName = lisColor[Math.floor(Math.random() * lisColor.length)] + listAnimal[Math.floor(Math.random() * listAnimal.length)];
+        let randomName = listColor[Math.floor(Math.random() * listColor.length)] + listAnimal[Math.floor(Math.random() * listAnimal.length)];
         
         const { nicknames = [] } = this.state;
-        this.setState({ nicknames: nicknames.concat(`dd ${randomName}`) });
+        this.setState({ nicknames: nicknames.concat(`${randomName}`) });
         console.log(nicknames);
       }
       render({ version }, { nicknames = [] }) {
         return html`
           <div class="app">
             <${Header} name="combiname v${version}" />
+            <button onClick=${() => this.makeName()} >Make Random Nickname</button>
+            
             <ul>
               ${nicknames.map(nickname => html`
                 <li>${nickname}</li>
               `)}
             </ul>
-            <button onClick=${() => this.makeName()} >Make Random Nickname</button>
            </div>
         `;
         
@@ -50,5 +49,7 @@
 
     render(html`<${App} version="0.1" />`, document.body);
   </script>
+   </head>
+   </head>
   </body>
 </html>
