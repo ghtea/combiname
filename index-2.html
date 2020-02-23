@@ -17,36 +17,36 @@
       href=".png"/>
   </head>
   <body>
+  <script 
   
-  <script src="dataWords.js"></script>
+  
   <script type="module">
     import { html, Component, render } from 'https://ghtea.github.io/combiname/common/standalone.module.js';
 
     class App extends Component {
-      makeName() {
-        let randomName = lisColor[Math.floor(Math.random() * lisColor.length)] + listAnimal[Math.floor(Math.random() * listAnimal.length)];
-        
-        const { nicknames = [] } = this.state;
-        this.setState({ nicknames: nicknames.concat(`dd ${randomName}`) });
-        console.log(nicknames);
+      addTodo() {
+        const { todos = [] } = this.state;
+        this.setState({ todos: todos.concat(`Item ${todos.length}`) });
       }
-      render({ version }, { nicknames = [] }) {
+      render({ version }, { todos = [] }) {
         return html`
           <div class="app">
             <${Header} name="combiname v${version}" />
             <ul>
-              ${nicknames.map(nickname => html`
-                <li>${nickname}</li>
+              ${todos.map(todo => html`
+                <li>${todo}</li>
               `)}
             </ul>
-            <button onClick=${() => this.makeName()} >Make Random Nickname</button>
-           </div>
+            <button onClick=${() => this.addTodo()}>Add Todo</button>
+            <${Footer}>footer content here<//>
+          </div>
         `;
-        
       }
     }
 
     const Header = ({ name }) => html`<h1>${name}</h1>`
+
+    const Footer = props => html`<footer ...${props} />`
 
     render(html`<${App} version="0.1" />`, document.body);
   </script>
