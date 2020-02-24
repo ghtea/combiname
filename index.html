@@ -16,13 +16,14 @@
       sizes="128x128"
       href=".png"/>
 
-  <script src="dataWords.js"></script>
+  <script src="arrayFront.js"></script>
+  <script src="arrayBack.js"></script>
   <script type="module">
     import { html, Component, render } from 'https://ghtea.github.io/combiname/common/standalone.module.js';
 
     class App extends Component {
       makeName() {
-        let randomName = listColor[Math.floor(Math.random() * listColor.length)] + listAnimal[Math.floor(Math.random() * listAnimal.length)];
+        let randomName = arrayFront[Math.floor(Math.random() * arrayFront.length)]['word'] + arrayBack[Math.floor(Math.random() * arrayBack.length)]['word'];
         
         const { nicknames = [] } = this.state;
         this.setState({ nicknames: nicknames.concat(`${randomName}`) });
